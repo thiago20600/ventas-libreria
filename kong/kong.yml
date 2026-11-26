@@ -1,0 +1,10 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: ms-agendas
+    url: http://ms-agendas:8000
+    routes:
+      - name: agendas-route
+        paths:
+          - /api/agendas
