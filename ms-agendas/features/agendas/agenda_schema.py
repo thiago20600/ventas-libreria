@@ -4,6 +4,7 @@ from decimal import Decimal
 from uuid import UUID
 from pydantic import Field, HttpUrl, field_validator
 from sqlmodel import SQLModel
+from ..insumos.insumo_model import Insumo
 
 
 
@@ -12,8 +13,7 @@ class AgendaCatalogoCreate(SQLModel):
     descripcion: str | None = Field(default=None, max_length=900)
     precio_base: Decimal = Field(max_digits=10, decimal_places=2, ge=0)
     fotos: Annotated[list[HttpUrl], Field(max_length=5)] | None = None
-    #insumos: list[InsumoItem] = Field(min_length=1)
-    insumos: list[str] = Field(min_length=1)
+    insumos: list[Insumo] = Field(min_length=1)
     stock_agenda: int = Field(default=1, ge=1)
 
 
