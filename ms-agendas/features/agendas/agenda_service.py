@@ -1,5 +1,5 @@
-from agenda_schema import AgendaCatalogoCreate, AgendaCatalogoResponse
+from .agenda_repository import AgendaRepository
 
-class AgendaCalogoService():
-    def __init__(self):
-        pass
+class AgendaService():
+    def __init__(self, repository: AgendaRepository):
+        self.repository = repository
