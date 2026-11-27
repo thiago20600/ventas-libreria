@@ -11,6 +11,7 @@ from sqlalchemy import CheckConstraint, Column
 from sqlmodel import Field, Relationship, SQLModel
 from ..agendas.agenda_model import AgendaCatalogo
 from ..agendas_insumos.agenda_insumo_model import AgendaInsumo
+from ..tipos_insumos.tipo_insumo_model import TipoInsumo
 
 
 class Insumo(SQLModel, table=True):
@@ -25,6 +26,7 @@ class Insumo(SQLModel, table=True):
 
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     nombre: str = Field(min_length=10, max_length=300)
+    tipo_insumo_id: UUID = Field(foreign_key="tipoinsumo.id", index=True) 
     descripcion: str | None = Field(default=None, min_length=10, max_length=700)
     imagen: list[str] | None = Field(default=None, sa_column=Column(JSONB))
     stock: int = Field(ge=0)
@@ -32,3 +34,4 @@ class Insumo(SQLModel, table=True):
     fecha_creacion: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     version: int = Field(default=1, ge=1)
     agendas: list["AgendaCatalogo"] = Relationship(back_populates="insumos", link_model=AgendaInsumo)
+    tipo_insumo: "TipoInsumo" = Relationship(back_populates="insumos")
