@@ -1,5 +1,19 @@
-.venv/
+# Python
 __pycache__/
-.env
-certs/
+*.py[cod]
+
+# Entornos virtuales
+.venv/
 venv/
+
+# Variables de entorno
+.env
+.env.*
+
+# Certificados
+certs/
+
+# Paquetes Python generados
+*.egg-info/
+build/
+dist/
